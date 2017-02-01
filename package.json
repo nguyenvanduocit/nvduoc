@@ -10,6 +10,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "localforage": "^1.4.3",
     "node-sass": "^4.3.0",
     "sass-loader": "^4.1.1",
     "timeago.js": "^2.0.4",

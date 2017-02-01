@@ -8,7 +8,7 @@ import { sync } from 'vuex-router-sync'
 import VueResource from 'vue-resource'
 
 Vue.use(VueResource)
-Vue.http.options.root = 'https://nvduoc.senviet.org/wp-json/wp/v2'
+Vue.http.options.root = 'wp-json/wp/v2'
 // sync the router with the vuex store.
 // this registers `store.state.route`
 sync(store, router)
@@ -21,3 +21,11 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker
+    .register('/service-worker.js')
+    .then((reg) => {
+      console.log('Service Worker Registered, Scoped is: ' + reg.scope)
+    })
+}

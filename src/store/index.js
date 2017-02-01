@@ -13,17 +13,43 @@ const store = new Vuex.Store({
   actions: {
     FETCH_POSTS: ({ commit, state }) => {
       commit('SET_LOADING', true)
-      Vue.http.get('posts?per_page=' + state.postsPerPage + '&page=' + state.page).then(response => {
-        commit('SET_LOADING', false)
-        if (response.body.length === 0) {
-          commit('SET_CAN_LOAD_MORE', false)
-        } else {
-          commit('SET_POSTS', response.body)
-          commit('INCREASE_PAGE')
-        }
-      }, response => {
-        commit('SET_LOADING', false)
-      })
+      if ('caches' in window) {
+        let requestedURL = Vue.http.options.root + '/posts?per_page=' + state.postsPerPage + '&page=' + state.page
+        /* eslint-disable no-undef */
+        caches.match(requestedURL).then((response) => {
+          if (response) {
+            response.json().then((posts) => {
+              commit('SET_POSTS', posts)
+              commit('INCREASE_PAGE')
+              commit('SET_LOADING', false)
+            })
+          } else {
+            Vue.http.get('posts?per_page=' + state.postsPerPage + '&page=' + state.page).then(response => {
+              commit('SET_LOADING', false)
+              if (response.body.length === 0) {
+                commit('SET_CAN_LOAD_MORE', false)
+              } else {
+                commit('SET_POSTS', response.body)
+                commit('INCREASE_PAGE')
+              }
+            }, response => {
+              commit('SET_LOADING', false)
+            })
+          }
+        })
+      } else {
+        Vue.http.get('posts?per_page=' + state.postsPerPage + '&page=' + state.page).then(response => {
+          commit('SET_LOADING', false)
+          if (response.body.length === 0) {
+            commit('SET_CAN_LOAD_MORE', false)
+          } else {
+            commit('SET_POSTS', response.body)
+            commit('INCREASE_PAGE')
+          }
+        }, response => {
+          commit('SET_LOADING', false)
+        })
+      }
     }
   },
   mutations: {
