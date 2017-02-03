@@ -1,7 +1,7 @@
 body{
   background: $color__body_background;
 }
-p{
+p, ul, ol, quote{
   margin-top: 24px;
   margin-bottom: 0;
   font-size: 17px;

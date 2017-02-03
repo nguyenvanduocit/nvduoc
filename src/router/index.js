@@ -14,8 +14,11 @@ export default new Router({
       component: HomePage
     },
     {
-      path: '/:slug',
-      component: SinglePost
+      path: '/post/:slug',
+      component: SinglePost,
+      meta: {
+        scrollToTop: true
+      }
     }
   ],
   scrollBehavior (to, from, savedPosition) {

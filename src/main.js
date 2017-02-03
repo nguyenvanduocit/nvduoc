@@ -8,7 +8,7 @@ import { sync } from 'vuex-router-sync'
 import VueResource from 'vue-resource'
 
 Vue.use(VueResource)
-Vue.http.options.root = 'wp-json/wp/v2'
+Vue.http.options.root = '/wp-json/wp/v2'
 // sync the router with the vuex store.
 // this registers `store.state.route`
 sync(store, router)

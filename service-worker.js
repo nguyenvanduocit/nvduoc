@@ -1,9 +1,8 @@
-let cacheName = 'nvduoc-shell-v1'
-var dataCacheName = 'nvduoc-data-v1';
+let cahceTimestamp = '1486086904919'
+let cacheName = 'nvduoc-shell-v' + cahceTimestamp
+var dataCacheName = 'nvduoc-data-v' + cahceTimestamp
 let filesToCache = [
-  '/',
-  '/index.html',
-  '/app.js'
+  '/'
 ]
 
 self.addEventListener('activate', (e) => {

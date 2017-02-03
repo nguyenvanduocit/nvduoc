@@ -6,7 +6,7 @@
       </div>
       <template v-if="post">
         <header class="header">
-          <h1 class="title"><router-link :to="{ path: '/' + post.slug}" v-html="post.title.rendered"></router-link></h1>
+          <h1 class="title"><router-link :to="{ path: '/post/' + post.slug}" v-html="post.title.rendered"></router-link></h1>
           <time v-text="post.formattedModified"></time>
         </header>
         <div class="content" v-html="post.content.rendered"></div>

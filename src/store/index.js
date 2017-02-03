@@ -5,51 +5,46 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     postsPerPage: 10,
-    page: 1,
+    page: 0,
     posts: {},
     canLoadMore: true,
     isLoading: true
   },
   actions: {
-    FETCH_POSTS: ({ commit, state }) => {
+    FETCH_POSTS: ({ commit, state }, page) => {
+      if (page) {
+        commit('SET_PAGE', page)
+      } else {
+        commit('INCREASE_PAGE')
+      }
       commit('SET_LOADING', true)
+      let requestPath = 'posts?per_page=' + state.postsPerPage + '&page=' + state.page
       if ('caches' in window) {
-        let requestedURL = Vue.http.options.root + '/posts?per_page=' + state.postsPerPage + '&page=' + state.page
+        let requestedURL = Vue.http.options.root + '/' + requestPath
         /* eslint-disable no-undef */
         caches.match(requestedURL).then((response) => {
           if (response) {
+            commit('SET_LOADING', false)
             response.json().then((posts) => {
-              commit('SET_POSTS', posts)
-              commit('INCREASE_PAGE')
-              commit('SET_LOADING', false)
-            })
-          } else {
-            Vue.http.get('posts?per_page=' + state.postsPerPage + '&page=' + state.page).then(response => {
-              commit('SET_LOADING', false)
-              if (response.body.length === 0) {
+              if (posts.length === 0) {
                 commit('SET_CAN_LOAD_MORE', false)
               } else {
-                commit('SET_POSTS', response.body)
-                commit('INCREASE_PAGE')
+                commit('SET_POSTS', posts)
               }
-            }, response => {
-              commit('SET_LOADING', false)
             })
           }
         })
-      } else {
-        Vue.http.get('posts?per_page=' + state.postsPerPage + '&page=' + state.page).then(response => {
-          commit('SET_LOADING', false)
-          if (response.body.length === 0) {
-            commit('SET_CAN_LOAD_MORE', false)
-          } else {
-            commit('SET_POSTS', response.body)
-            commit('INCREASE_PAGE')
-          }
-        }, response => {
-          commit('SET_LOADING', false)
-        })
       }
+      Vue.http.get(requestPath).then(response => {
+        commit('SET_LOADING', false)
+        if (response.body.length === 0) {
+          commit('SET_CAN_LOAD_MORE', false)
+        } else {
+          commit('SET_POSTS', response.body)
+        }
+      }, response => {
+        commit('SET_LOADING', false)
+      })
     }
   },
   mutations: {
@@ -65,6 +60,9 @@ const store = new Vuex.Store({
     },
     SET_LOADING: (state, isLoading) => {
       state.isLoading = isLoading
+    },
+    SET_PAGE: (state, page) => {
+      state.page = page
     },
     INCREASE_PAGE: (state) => {
       state.page++

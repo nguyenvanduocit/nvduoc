@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Lora:400,700|Roboto:400,500&subset=vietnamese');
 html{
   font-family: $font__primary;
 }
@@ -8,4 +9,5 @@ h2{
   font-style: normal;
   font-weight: 500;
   display: block;
+  font-family: $font__heading;
 }
