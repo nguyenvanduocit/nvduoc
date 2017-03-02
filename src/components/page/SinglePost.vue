@@ -24,7 +24,7 @@ export default {
     }
   },
   beforeMount () {
-    let key = '_' + this.$route.params.slug
+    let key = this.$route.params.slug
     if (this.$store.getters.posts.hasOwnProperty(key)) {
       this.post = this.$store.getters.posts[key]
     } else {

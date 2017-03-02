@@ -54,7 +54,7 @@ const store = new Vuex.Store({
           let modifiedDate = new Date(post.modified)
           post.formattedModified = modifiedDate.getDay() + '/' + modifiedDate.getMonth() + '/' + modifiedDate.getFullYear()
           // avoid auto key sort, A buggy featured of chrome
-          Vue.set(state.posts, '_' + post.slug, post)
+          Vue.set(state.posts, post.slug, post)
         }
       })
     },

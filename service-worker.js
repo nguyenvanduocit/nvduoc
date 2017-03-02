@@ -1,4 +1,4 @@
-let cahceTimestamp = '1486086904919'
+let cahceTimestamp = '1486086904920'
 let cacheName = 'nvduoc-shell-v' + cahceTimestamp
 var dataCacheName = 'nvduoc-data-v' + cahceTimestamp
 let filesToCache = [
