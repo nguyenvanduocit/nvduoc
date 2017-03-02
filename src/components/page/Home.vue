@@ -15,7 +15,7 @@ export default {
   components: {
     PostList
   },
-  beforeMount  () {
+  mounted  () {
     if (Object.keys(this.$store.getters.posts).length === 0) {
       this.$store.dispatch('FETCH_POSTS', this.$route.params.page)
     }
