@@ -19,22 +19,6 @@ const store = new Vuex.Store({
       }
       commit('SET_LOADING', true)
       let requestPath = 'posts?per_page=' + state.postsPerPage + '&page=' + state.page
-      if ('caches' in window) {
-        let requestedURL = Vue.http.options.root + '/' + requestPath
-        /* eslint-disable no-undef */
-        caches.match(requestedURL).then((response) => {
-          if (response) {
-            commit('SET_LOADING', false)
-            response.json().then((posts) => {
-              if (posts.length === 0) {
-                commit('SET_CAN_LOAD_MORE', false)
-              } else {
-                commit('SET_POSTS', posts)
-              }
-            })
-          }
-        })
-      }
       Vue.http.get(requestPath).then(response => {
         commit('SET_LOADING', false)
         if (response.body.length === 0) {
