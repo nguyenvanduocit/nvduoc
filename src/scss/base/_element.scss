@@ -1,5 +1,6 @@
 body{
   background: $color__body_background;
+  color: $color__primary;
 }
 p, ul, ol, quote{
   margin-top: 24px;
@@ -7,7 +8,7 @@ p, ul, ol, quote{
   font-size: 17px;
   font-weight: 400;
   line-height: 32px;
-  color: #646C77;
+  color: $color__primary;
   display: block;
   a{
     color: $color__primary;

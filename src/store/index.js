@@ -3,9 +3,12 @@ import Vuex from 'vuex'
 import axios from 'axios'
 import forEach from 'lodash/forEach'
 import formatDate from 'date-fns/format'
+import user from './user'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
+  strict: process.env.NODE_ENV !== 'production',
+  modules: {user},
   state: {
     postsPerPage: 10,
     page: 0,
