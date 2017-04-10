@@ -16,7 +16,7 @@ axios.defaults.baseURL = 'https://public-api.wordpress.com/rest/v1.1/sites/nguye
 
 webfontloader.load({
   google: {
-    families: ['Lora:400,700:vietnamese', 'Roboto:400,500:vietnamese']
+    families: ['Noto+Serif:400,700', 'Roboto:400,500:vietnamese,latin']
   }
 })
 
