@@ -5,14 +5,13 @@ import App from './App'
 import router from './router'
 import store from './store'
 import { sync } from 'vuex-router-sync'
-import axios from 'axios'
 import '@/scss/global.scss'
 import webfontloader from 'webfontloader'
-
+import {auth} from './services'
 Vue.config.productionTip = false
 sync(store, router)
 
-axios.defaults.baseURL = 'https://public-api.wordpress.com/rest/v1.1/sites/nguyenvanduocit.wordpress.com/'
+auth.checkAuth()
 
 webfontloader.load({
   google: {

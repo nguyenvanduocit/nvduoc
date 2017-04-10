@@ -1,0 +1,17 @@
+.btn{
+  border: 1px solid rgba(74, 82, 95, 0.1);
+  color: $color__primary;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 10px 40px;
+  margin-top: 20px;
+  @include font-size(14);
+  display: inline-block;
+  border-radius: 30px;
+  transition: all .3s ease-in-out;
+  background: #ffffff;
+  @include hover-focus-active(){
+    background: $color__primary;
+    color: #ffffff;
+  }
+}

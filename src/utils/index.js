@@ -1,0 +1,20 @@
+let config = {
+  dateFormat: '[Ngày] DD [tháng] MM [năm] YYYY',
+  client_id: 52914,
+  blog: 'nguyenvanduocit.wordpress.com'
+}
+
+let getJsonFromUrl = () => {
+  let query = location.hash.substr(1)
+  let result = {}
+  query.split('&').forEach((part) => {
+    let item = part.split('=')
+    result[item[0]] = decodeURIComponent(item[1])
+  })
+  return result
+}
+
+export {
+  config,
+  getJsonFromUrl
+}

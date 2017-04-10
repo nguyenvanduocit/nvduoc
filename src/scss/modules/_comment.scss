@@ -1,0 +1,9 @@
+.comment{
+  .content{
+    p{
+      margin-top: 15px;
+      @include font-size(14);
+      line-height: 25px;
+    }
+  }
+}

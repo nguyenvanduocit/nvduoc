@@ -1,11 +1,17 @@
+import Vue from 'vue'
 export default {
   namespaced: true,
   state: {
-    userName: '',
-    userId: '',
-    accessToken: ''
+    user: {}
   },
-  getters: {},
+  getters: {
+    isLoggedIn: state => typeof state.user.ID !== 'undefined',
+    user: state => state.user
+  },
   actions: {},
-  mutations: {}
+  mutations: {
+    SET_USER: (state, user) => {
+      Vue.set(state, 'user', user)
+    }
+  }
 }

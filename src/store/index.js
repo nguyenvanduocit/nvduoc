@@ -1,25 +1,27 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
+import http from '../services/http'
 import forEach from 'lodash/forEach'
 import formatDate from 'date-fns/format'
 import user from './user'
+import {config} from '../utils'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
-  modules: {user},
+  modules: {
+    user
+  },
   state: {
     postsPerPage: 10,
     page: 0,
     posts: {},
     canLoadMore: true,
-    isLoading: true,
-    dateFormat: '[Ngày] DD [tháng] MM [năm] YYYY'
+    isLoading: true
   },
   actions: {
     FETCH_POST: ({ commit, state }, slug) => {
-      return axios.get('posts/slug:' + slug).then(response => {
+      return http.get('posts/slug:' + slug).then(response => {
         commit('SET_LOADING', false)
         commit('SET_POST', response.data)
       }).catch(error => {
@@ -34,7 +36,7 @@ const store = new Vuex.Store({
       }
       commit('SET_LOADING', true)
       let requestPath = 'posts?number=' + state.postsPerPage + '&page=' + state.page + '&fields=ID,date,title,excerpt,slug,content'
-      return axios.get(requestPath).then(response => {
+      return http.get(requestPath).then(response => {
         commit('SET_LOADING', false)
         if (response.data.found === 0) {
           commit('SET_CAN_LOAD_MORE', false)
@@ -46,12 +48,12 @@ const store = new Vuex.Store({
   },
   mutations: {
     SET_POST: (state, post) => {
-      post.formatedDate = formatDate(post.date, state.dateFormat)
+      post.formatedDate = formatDate(post.date, config.dateFormat)
       Vue.set(state.posts, post.slug, post)
     },
     SET_POSTS: (state, posts) => {
       forEach(posts, post => {
-        post.formatedDate = formatDate(post.date, state.dateFormat)
+        post.formatedDate = formatDate(post.date, config.dateFormat)
         Vue.set(state.posts, post.slug, post)
       })
     },
@@ -80,7 +82,8 @@ const store = new Vuex.Store({
     },
     canLoadMore: state => {
       return state.canLoadMore
-    }
+    },
+    modalData: state => state.modalData
   }
 })
 
