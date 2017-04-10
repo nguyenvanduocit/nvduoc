@@ -65,7 +65,7 @@
           http.post('/posts/' + this.postId + '/replies/new/', {
             content: message
           }).then(() => {
-            pubsub.$emit('show-modal', {message: 'Cảm ơn vì đã chia sẻ suy nghĩ của bạn.', icon: 'success'})
+            pubsub.$emit('show-modal', {message: 'Cảm ơn vì đã chia sẻ suy nghĩ của bạn. Bình luận của bạn đã được lưu vào cơ sở dữ liệu, mình sẽ sớm duyệt nó. Cảm ơn bạn!', icon: 'success'})
           }).catch(error => {
             pubsub.$emit('show-modal', {message: error.response.data.message, icon: 'error'})
           })
