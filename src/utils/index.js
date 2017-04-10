@@ -1,6 +1,6 @@
 let config = {
   dateFormat: '[Ngày] DD [tháng] MM [năm] YYYY',
-  client_id: 52914,
+  client_id: process.env.NODE_ENV === 'production' ? 52911 : 52914,
   blog: 'nguyenvanduocit.wordpress.com'
 }
 
