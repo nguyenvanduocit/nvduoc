@@ -25,7 +25,7 @@ export default new Router({
       component: HomePage
     },
     {
-      path: '/post/:slug',
+      path: '/posts/:slug',
       component: SingularPage,
       meta: {
         scrollToTop: true
