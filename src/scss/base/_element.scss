@@ -23,3 +23,13 @@ img{
   max-width: 100%;
   height: auto;
 }
+
+textarea, input{
+  border: 1px solid rgba(74, 82, 95, 0.1);
+  padding: 15px 20px;
+  transition: height .3s ease-in-out;
+  @include font-size(16);
+  @include hover-focus-active(){
+    outline: none;
+  }
+}

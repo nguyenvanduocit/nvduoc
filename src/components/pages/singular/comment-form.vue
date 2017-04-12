@@ -18,17 +18,12 @@
     @import "../../../scss/global.import";
     .comment-form{
         textarea{
-            border: 1px solid rgba(74, 82, 95, 0.1);
             width: 100%;
-            padding: 15px 20px;
             height: 55px;
-            transition: height .3s ease-in-out;
+            border-radius: 40px;
             &.active{
+                border-radius: 5px;
                 height: 200px;
-            }
-            @include font-size(16);
-            @include hover-focus-active(){
-                outline: none;
             }
         }
     }
