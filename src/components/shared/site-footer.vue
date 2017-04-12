@@ -25,6 +25,7 @@
     flex-wrap: wrap;
   }
   .connect{
+    @include font-size(14);
     ul{
       list-style: none;
       margin: 0;

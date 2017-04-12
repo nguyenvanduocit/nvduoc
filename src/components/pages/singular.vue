@@ -41,5 +41,8 @@
 <style lang="scss" scoped>
     .single-post{
         margin-bottom: 60px;
+        .header{
+            margin-bottom: 50px;
+        }
     }
 </style>

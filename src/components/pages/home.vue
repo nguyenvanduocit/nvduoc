@@ -32,28 +32,5 @@
 <style lang="scss" scoped>
 	@import "../../scss/global.import";
 	.page-home{
-		.load-more-container{
-			text-align: center;
-			.loading-more, .load-more{
-				display: inline-block;
-				text-align: center;
-				margin-bottom: 48px;
-				font-family: "Lora", serif;
-				font-size: 17px;
-				font-weight: 400;
-				color: $color__primary;
-				text-decoration: none;
-				border-bottom: 1px dotted $color__primary;
-				-webkit-transition: all 0.3s;
-				-moz-transition: all 0.3s;
-				transition: all 0.3s;
-			}
-			.load-more{
-				cursor: pointer;
-			}
-			.loading-more{
-				cursor: wait;
-			}
-		}
 	}
 </style>
