@@ -8,7 +8,7 @@
     export default {
       props: {
         text: {
-          type: Text,
+          type: String,
           default: 'Login With WordPress.com'
         }
       },

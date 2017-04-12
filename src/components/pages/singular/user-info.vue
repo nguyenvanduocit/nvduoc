@@ -23,6 +23,7 @@
         margin-bottom: 20px;
         p{
             @include font-size(14);
+            line-height: 25px;
             font-weight: 400;
         }
     }
